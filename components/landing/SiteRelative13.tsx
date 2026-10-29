@@ -1,16 +1,31 @@
 import type { Dict } from "../../lib/i18n";
 import { css } from "../../lib/css";
 import QRCode from "qrcode";
-import { CircleHelp, Smartphone } from "lucide-react";
+import { headers } from "next/headers";
+import { CircleHelp, Download } from "lucide-react";
 import { SITE } from "../../lib/site";
 
-async function qrDataUrl() {
-  const svg = await QRCode.toString(SITE.appUrl, { type: "svg", margin: 1, color: { dark: "#111827", light: "#0000" } });
+// qr needs a full url so the phone can fetch the apk
+async function apkUrl() {
+  if (SITE.siteUrl) return new URL(SITE.apkPath, SITE.siteUrl).href;
+  // vercel sets this at build, keeps the page static
+  const prod = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (prod) return `https://${prod}${SITE.apkPath}`;
+  // local dev: use whatever host the page was opened on
+  const h = await headers();
+  const host = h.get("x-forwarded-host") || h.get("host") || "localhost:3000";
+  const proto = h.get("x-forwarded-proto") || "http";
+  return `${proto}://${host}${SITE.apkPath}`;
+}
+
+async function qrDataUrl(url: string) {
+  const svg = await QRCode.toString(url, { type: "svg", margin: 1, color: { dark: "#111827", light: "#0000" } });
   return `data:image/svg+xml;base64,${Buffer.from(svg).toString("base64")}`;
 }
 
 export default async function SiteRelative13({ t }: { t: Dict }) {
-  const qr = await qrDataUrl();
+  const url = await apkUrl();
+  const qr = await qrDataUrl(url);
   return (
     <section id="download-app" className="site-relative overflow-hidden pt-20 lg:pt-30 pb-8">
       {"  "}
@@ -25,17 +40,18 @@ export default async function SiteRelative13({ t }: { t: Dict }) {
             </p>
             <div className="site-mt-3-5 site-flex flex-col gap-4 site-lg-mt-8 site-relative site-z-40">
               <a
-                href={SITE.appUrl}
+                href={SITE.apkPath}
+                download="Yala-Maha.apk"
                 className="group site-relative site-inline-flex overflow-hidden bg-black lg:px-8.5 site-px-3-5 text-white site-transition-all duration-300 hover:scale-95 rounded-[3.40282e38px] [box-shadow:var(--tw-inset-shadow),_var(--tw-inset-ring-shadow),_var(--tw-ring-offset-shadow),_var(--tw-ring-shadow),_var(--tw-shadow)] [--tw-shadow:0_20px_25px_-5px_var(--tw-shadow-color,#0000001a),_0_8px_10px_-6px_var(--tw-shadow-color,#0000001a)]"
               >
                 <div className="site-relative site-flex flex-col items-center transition-transform duration-300 group-hover:-translate-y-full">
                   <div className="site-flex h-14 items-center gap-3">
-                    <Smartphone className="size-5" />
-                    <span className="lg:text-base text-sm">{t.nav.openApp}</span>
+                    <Download className="size-5" />
+                    <span className="lg:text-base text-sm">{t.download.button}</span>
                   </div>
                   <div className="site-absolute top-full site-flex h-14 items-center gap-3">
-                    <Smartphone className="size-5" />
-                    <span className="lg:text-base text-sm">{t.nav.openApp}</span>
+                    <Download className="size-5" />
+                    <span className="lg:text-base text-sm">{t.download.button}</span>
                   </div>
                 </div>
               </a>
@@ -70,7 +86,7 @@ export default async function SiteRelative13({ t }: { t: Dict }) {
               </h3>{" "}
               <div className="site-inline-block rounded-2xl bg-white p-2 site-z-30 site-relative [box-shadow:var(--tw-inset-shadow),_var(--tw-inset-ring-shadow),_var(--tw-ring-offset-shadow),_var(--tw-ring-shadow),_var(--tw-shadow)] [--tw-shadow:0_25px_50px_-12px_var(--tw-shadow-color,#00000040)]">
                 <div className="site-flex items-center justify-center rounded-2xl bg-default-200 p-2">
-                  <img data-reveal="pop" style={css({ "--delay": "450ms" })} src={qr} alt={`QR code for ${SITE.appUrl}`} className="size-36 lg:size-46" />
+                  <img data-reveal="pop" style={css({ "--delay": "450ms" })} src={qr} alt={`QR code for ${url}`} className="size-36 lg:size-46" />
                 </div>
               </div>{" "}
             </div>

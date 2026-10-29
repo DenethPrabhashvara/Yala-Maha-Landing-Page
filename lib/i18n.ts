@@ -268,7 +268,8 @@ const en = {
     title: "Better decisions, every season",
     text: "See your tank, plan with the forecast and report canal problems, all from your phone.",
     faq: "Read the FAQ",
-    scan: "Scan to open the app on your phone",
+    scan: "Scan to download the app on your phone",
+    button: "Download the app",
   },
   footer: {
     title: "Water and farm information for Sri Lankan farmers",
@@ -541,7 +542,8 @@ const si: Dict = {
     title: "සෑම කන්නයකම වඩා හොඳ තීරණ",
     text: "ඔබේ වැව බලන්න, පුරෝකථනය සමඟ සැලසුම් කරන්න, ඇළ ගැටලු වාර්තා කරන්න, සියල්ල ඔබේ දුරකථනයෙන්.",
     faq: "ප්‍රශ්න කියවන්න",
-    scan: "ඔබේ දුරකථනයෙන් ඇප් එක විවෘත කිරීමට ස්කෑන් කරන්න",
+    scan: "ඔබේ දුරකථනයට ඇප් එක බාගැනීමට ස්කෑන් කරන්න",
+    button: "ඇප් එක බාගන්න",
   },
   footer: {
     title: "ශ්‍රී ලාංකික ගොවීන් සඳහා ජල සහ ගොවිපළ තොරතුරු",
@@ -812,7 +814,8 @@ const ta: Dict = {
     title: "ஒவ்வொரு பருவத்திலும் சிறந்த முடிவுகள்",
     text: "உங்கள் குளத்தைப் பாருங்கள், முன்னறிவிப்புடன் திட்டமிடுங்கள், கால்வாய் பிரச்சினைகளை அறிவியுங்கள், அனைத்தும் உங்கள் தொலைபேசியிலிருந்து.",
     faq: "கேள்விகளைப் படியுங்கள்",
-    scan: "உங்கள் தொலைபேசியில் செயலியைத் திறக்க ஸ்கேன் செய்யுங்கள்",
+    scan: "உங்கள் தொலைபேசியில் செயலியைப் பதிவிறக்க ஸ்கேன் செய்யுங்கள்",
+    button: "செயலியைப் பதிவிறக்கு",
   },
   footer: {
     title: "இலங்கை விவசாயிகளுக்கான நீர், பண்ணைத் தகவல்கள்",
