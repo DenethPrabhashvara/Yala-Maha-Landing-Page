@@ -22,7 +22,7 @@ const en = {
     coverage: "Coverage",
     forecast: "Forecast",
     faq: "FAQ",
-    openApp: "Open the app",
+    openApp: "Get the app",
     language: "Language",
   },
   hero: {
@@ -296,7 +296,7 @@ const si: Dict = {
     coverage: "ආවරණය",
     forecast: "පුරෝකථනය",
     faq: "ප්‍රශ්න",
-    openApp: "ඇප් එක විවෘත කරන්න",
+    openApp: "ඇප් එක ලබාගන්න",
     language: "භාෂාව",
   },
   hero: {
@@ -568,7 +568,7 @@ const ta: Dict = {
     coverage: "உள்ளடக்கம்",
     forecast: "முன்னறிவிப்பு",
     faq: "கேள்விகள்",
-    openApp: "செயலியைத் திற",
+    openApp: "செயலியைப் பெறுங்கள்",
     language: "மொழி",
   },
   hero: {

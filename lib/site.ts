@@ -1,6 +1,7 @@
 export const SITE = {
   name: "Yala Maha",
-  appUrl: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:5174",
+  // web app if hosted, otherwise the apk download
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || "/Yala-Maha.apk",
   // android build, served from public/
   apkPath: "/Yala-Maha.apk",
   // public origin for the qr code, falls back to the request host
